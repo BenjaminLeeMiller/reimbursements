@@ -31,7 +31,7 @@ json[:projects].each_with_index do |project_details, index|
 
   begin
     [:start_date, :end_date].each do |key|
-      raise "Invalid #{key}" unless project_details[key] =~ /\d\d\/\d\d\/\d\d\d\d/
+      raise "Invalid #{key}" unless project_details[key] =~ /^\d{2}\/\d{2}\/\d{4}$/
     end
     start_date = Date.strptime(project_details[:start_date], '%m/%d/%Y')
     end_date = Date.strptime(project_details[:end_date], '%m/%d/%Y')
