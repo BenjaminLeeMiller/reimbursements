@@ -19,7 +19,7 @@ Note: An assumption has been made that if more than one city cost can apply to a
 ## Usage
 1. Checkout the code and navigate to the project folder
 2. Run `bundle install`
-3. Rub `bundle exec rspec`
+3. Run `bundle exec rspec`
 4. Run `bundle exec ruby reimburse.rb examples/sample1.json`
 
 ## Creating your own projects JSON.
