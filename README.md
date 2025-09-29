@@ -28,11 +28,11 @@ To create a projects JSON, you need to adhere to the following:
 ```json
 {
   "projects" : [
-    { "start_date" : "10/01/2024", "end_date" : "10/04/2024", "scale" : "low" },
+    { "start_date" : "10/01/2024", "end_date" : "10/04/2024", "cost" : "low" },
     ...
   ]
 }
 ```
 
 Dates have the format of `mm/dd/yyyy`
-Valid values for scale are `high` or `low`
+Valid values for cost are `high` or `low`

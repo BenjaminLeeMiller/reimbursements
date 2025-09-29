@@ -4,9 +4,9 @@ RSpec.describe Project do
   describe "#new" do
     let(:start_date) { Date.new }
     let(:end_date) { Date.new }
-    let(:scale) { PayScales::LOW }
+    let(:cost) { Costs::LOW }
 
-    subject { described_class.new(start_date, end_date, scale) }
+    subject { described_class.new(start_date, end_date, cost) }
 
     context "with valid params" do
       it 'should return a new instance.' do
@@ -40,11 +40,11 @@ RSpec.describe Project do
       end
     end
 
-    context "when the scale is invalid" do
-      let(:scale) { "bob" }
+    context "when the cost is invalid" do
+      let(:cost) { "bob" }
 
-      it 'should raise InvalidScale' do
-        expect { subject }.to raise_error(Project::InvalidScale)
+      it 'should raise InvalidCost' do
+        expect { subject }.to raise_error(Project::InvalidCost)
       end
     end
   end
