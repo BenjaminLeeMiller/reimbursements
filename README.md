@@ -35,4 +35,5 @@ To create a projects JSON, you need to adhere to the following:
 ```
 
 Dates have the format of `mm/dd/yyyy`
+
 Valid values for cost are `high` or `low`
