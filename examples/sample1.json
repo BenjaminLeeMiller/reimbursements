@@ -1,5 +1,5 @@
 {
   "projects" : [
-    {"start_date" : "10/01/2024", "end_date" : "10/04/2024", "cost" : "low"}
+    { "start_date" : "10/01/2024", "end_date" : "10/04/2024", "cost" : "low" }
   ]
 }
