@@ -17,7 +17,7 @@ Calculates reimbursement for projects taking into account city cost and work day
 Note: An assumption has been made that if more than one city cost can apply to a single day, the higher value will be used.
 
 ## Usage
-1. Checkout the code, and navigate to the project folder
+1. Checkout the code and navigate to the project folder
 2. Run `bundle install`
 3. Rub `bundle exec rspec`
 4. Run `bundle exec ruby reimburse.rb examples/sample1.json`
