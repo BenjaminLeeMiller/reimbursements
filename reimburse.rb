@@ -12,7 +12,7 @@ if ARGV.size == 0 || ARGV.include?('-h')
   puts "\t\t\te.g."
   puts "\t\t\t{"
   puts "\t\t\t  \"projects\" : ["
-  puts "\t\t\t    {\"start_date\" : \"10/01/2024\", \"end_date\" : \"10/03/2024\", \"scale\" : \"high\"},"
+  puts "\t\t\t    {\"start_date\" : \"10/01/2024\", \"end_date\" : \"10/03/2024\", \"cost\" : \"high\"},"
   puts "\t\t\t    ...,"
   puts "\t\t\t  ]"
   puts "\t\t\t}"
@@ -35,7 +35,7 @@ json[:projects].each_with_index do |project_details, index|
     end
     start_date = Date.strptime(project_details[:start_date], '%m/%d/%Y')
     end_date = Date.strptime(project_details[:end_date], '%m/%d/%Y')
-    projects << Project.new(start_date, end_date, project_details[:scale])
+    projects << Project.new(start_date, end_date, project_details[:cost])
   rescue => e
     raise "Invalid JSON File: invalid project(#{index}) - #{e.message}"
     exit
@@ -47,10 +47,10 @@ reimbursement = Reimbursement.new(projects)
 
 # display results
 if ARGV.include?('-verbose')
-  puts "Date, City Cost, Day Type, Day Value"
+  puts "Date, City Cost, Day Type, Rate for Day"
   reimbursement.by_date.keys.sort.each do |key|
     day = reimbursement.by_date[key]
-    puts [key, day[:scale], day[:day_type], day[:value]].join(", ")
+    puts [key, day[:cost], day[:day_type], day[:rate]].join(", ")
   end
 end
 puts

@@ -2,7 +2,7 @@
 
 require 'date'
 require_relative 'project'
-require_relative 'pay_scales'
+require_relative 'costs'
 
 # This class will, given an array of projects, calculate the expected reimbursment type and value
 # for each day covered by all projects as well as a total for reimbursment.
@@ -35,29 +35,29 @@ class Reimbursement
   end
 
   def process_project(project)
-    project.date_range.each { |date| process_date(date, project.pay_scale) }
+    project.date_range.each { |date| process_date(date, project.cost) }
   end
 
-  def process_date(date, scale)
-    @by_date[date] = { scale: comapre_scales(@by_date[date]&.dig(:scale), scale) }
+  def process_date(date, cost)
+    @by_date[date] = { cost: compare_costs(@by_date[date]&.dig(:cost), cost) }
   end
 
-  def comapre_scales(a, b)
-    [a, b].include?(PayScales::HIGH) ? PayScales::HIGH : PayScales::LOW    
+  def compare_costs(a, b)
+    [a, b].include?(Costs::HIGH) ? Costs::HIGH : Costs::LOW    
   end
 
   def calculate_total
     dates = by_date.keys
 
     dates.each do |date|
-      day_type = travel_day?(date) ? PayScales::TRAVEL_DAY : PayScales::FULL_DAY
-      value = PayScales::VALUES[by_date[date][:scale]][day_type]
+      day_type = travel_day?(date) ? Costs::TRAVEL_DAY : Costs::FULL_DAY
+      rate = Costs::VALUES[by_date[date][:cost]][day_type]
 
       # stash calculated values for debugging 
       by_date[date][:day_type] = day_type
-      by_date[date][:value] = value
+      by_date[date][:rate] = rate
 
-      @total += value
+      @total += rate
     end
   end
 

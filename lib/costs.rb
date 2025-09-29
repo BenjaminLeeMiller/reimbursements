@@ -1,4 +1,4 @@
-module PayScales
+module Costs
   HIGH = 'high'
   LOW = 'low'
   FULL_DAY = 'full'

@@ -1,21 +1,21 @@
 # frozen_string_literal: true
 
 require 'date'
-require_relative 'pay_scales'
+require_relative 'costs'
 
 # This class represents a single project's characteristics
 class Project
-  attr_reader :start_date, :end_date, :pay_scale
+  attr_reader :start_date, :end_date, :cost
 
-  VALID_PAY_SCALE_VALUES = [PayScales::HIGH, PayScales::LOW]
+  VALID_COST_VALUES = [Costs::HIGH, Costs::LOW]
 
-  def initialize(start_date, end_date, pay_scale)
+  def initialize(start_date, end_date, cost)
     validate_date_range(start_date, end_date)
-    validate_scale(pay_scale)
+    validate_cost(cost)
 
     @start_date = start_date
     @end_date = end_date
-    @pay_scale = pay_scale
+    @cost = cost
   end
 
   def date_range
@@ -30,8 +30,8 @@ class Project
     raise(InvalidDateRange) unless start_date <= end_date
   end
 
-  def validate_scale(scale)
-    raise(InvalidScale) unless VALID_PAY_SCALE_VALUES.include?(scale)
+  def validate_cost(cost)
+    raise(InvalidCost) unless VALID_COST_VALUES.include?(cost)
   end
 
   class ArgumentError < RuntimeError
@@ -58,9 +58,9 @@ class Project
     end
   end
 
-  class InvalidScale < ArgumentError
+  class InvalidCost < ArgumentError
     def message
-      "The specified pay scale is invalid.  Valid values: [#{VALID_PAY_SCALE_VALUES.join(', ')}]."
+      "The specified cost is invalid.  Valid values: [#{VALID_COST_VALUES.join(', ')}]."
     end
   end
 end
